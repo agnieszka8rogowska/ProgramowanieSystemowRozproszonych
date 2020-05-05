@@ -11,15 +11,15 @@ import java.util.Scanner;
 public class Program {
     static  HazelcastInstance hazelcastInstance;
     static Scanner scanner;
-    static Random r;
+    static Integer r;
     static boolean exit = true;
 
     static void fillData(){
         Map<Integer,SerwisSamochodowy> serwisSamochodowyMap = hazelcastInstance.getMap("serwisSamochodowy");
-        serwisSamochodowyMap.put(10,new SerwisSamochodowy("Jan Kowalski",1,200,"Diagnostyka komputerowa","Jan Nowak"));
-        serwisSamochodowyMap.put(20,new SerwisSamochodowy("Jan Kowal",1,100,"Wymiana oleju", "Jan Nowakowski"));
-        serwisSamochodowyMap.put(30,new SerwisSamochodowy("Jan Kowalczyk",1,300,"Wymiana paska rozrzadu", "Jan Nowakiewicz"));
-        serwisSamochodowyMap.put(40,new SerwisSamochodowy("Jan Kowalewski",2,300,"Wymiana klockow hamulcowych", "Jan Nowaczek"));
+        serwisSamochodowyMap.put(1,new SerwisSamochodowy("Jan Kowalski",1,200,"Diagnostyka komputerowa","Jan Nowak"));
+        serwisSamochodowyMap.put(2,new SerwisSamochodowy("Jan Kowal",1,100,"Wymiana oleju", "Jan Nowakowski"));
+        serwisSamochodowyMap.put(3,new SerwisSamochodowy("Jan Kowalczyk",1,300,"Wymiana paska rozrzadu", "Jan Nowakiewicz"));
+        serwisSamochodowyMap.put(4,new SerwisSamochodowy("Jan Kowalewski",2,300,"Wymiana klockow hamulcowych", "Jan Nowaczek"));
 
     }
 
@@ -49,7 +49,7 @@ public class Program {
         System.out.println("Koszt: ");
         serwisSamochodowy.setPrice(scanner.nextInt());
 
-        Integer key = r.nextInt()%10;
+        Integer key = r++;
         serwisSamochodowyMap.put(Math.toIntExact(key),serwisSamochodowy);
     }
 
@@ -142,7 +142,7 @@ public class Program {
     public static void main(String[] args) throws UnknownHostException{
         hazelcastInstance = Hazelcast.newHazelcastInstance(HConfig.getConfig());
         scanner = new Scanner(System.in);
-        r = new Random();
+        r = 5;
         fillData();
         runMenu();
         scanner.nextInt();
