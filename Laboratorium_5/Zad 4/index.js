@@ -22,11 +22,9 @@ async function wyswietlWszystkie() {
   }
 }
 const upsertDocument = async (doc) => {
-  console.log('prubuje tu?')
 const key = `${doc.id}`
 const result = await collection.upsert(key, doc)
-console.log('Upsert Result: ')
-console.log(result)
+console.log('Dodano zwierze')
 }
 const dodaj = () => {
 console.log('Dodaj zwierze')
@@ -49,7 +47,6 @@ const zwierze = {
 }
 try {
   upsertDocument(zwierze)
-  console.log('Dodano zwierze')
 } catch (error) {
 console.error(error)
 }
