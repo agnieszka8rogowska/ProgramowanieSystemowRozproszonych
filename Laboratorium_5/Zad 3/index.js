@@ -164,7 +164,6 @@ action = (number) => {
       break;
     case 3:
       usun();
-      
       break;
     case 4:
       aktualizuj();
